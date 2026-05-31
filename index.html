@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danfo Bistros & Dives | Premium Dining in Ikoyi</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variables for a Luxury Aesthetic */
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #141414;
+            --gold: #D4AF37;
+            --gold-hover: #b5952f;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --font-head: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Typography */
+        h1, h2, h3, .logo {
+            font-family: var(--font-head);
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80') center/cover;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 0.8s;
+        }
+
+        /* Buttons */
+        .btn-gold {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            text-decoration: none;
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.1s;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold);
+            color: var(--primary-bg);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--gold);
+        }
+
+        /* Grid Layouts */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .info-card {
+            background: var(--secondary-bg);
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
+            border-color: var(--gold);
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Menu Highlights */
+        .menu-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .menu-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .price-tag {
+            color: var(--gold);
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .social-links {
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Keyframes */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .nav-links {
+                display: none; /* Add hamburger menu for full build */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">DANFO<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">Overview</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#location">Directions</a></li>
+        </ul>
+        <a href="https://glovoapp.com" class="btn-gold" style="padding: 0.5rem 1.5rem; font-size: 0.8rem; animation: none; opacity: 1;">Order via Glovo</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Elevated Nigerian Cuisine</h1>
+            <p>A casual haunt with colourful decor offering classic stews, suya, ewa agoyin, snails, and artisanal cocktails.</p>
+            <a href="#location" class="btn-gold">Plan Your Visit</a>
+        </div>
+    </section>
+
+    <!-- About / Overview -->
+    <section id="about">
+        <div class="about-grid reveal">
+            <div>
+                <h2 class="section-title" style="text-align: left;">The Danfo Experience</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Located in the prestigious heart of Ikoyi, Danfo Bistros & Dives brings the vibrant street culture of Lagos into an elevated, refined setting. Rated 4.3 stars by over 2,700 guests, we specialize in authentic flavors.</p>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Whether you are dining in, driving through, or ordering no-contact delivery, expect culinary excellence starting from ₦10,000 per person.</p>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <span style="color: var(--gold);"><i class="fas fa-check-circle"></i> Dine-in</span>
+                    <span style="color: var(--gold);"><i class="fas fa-check-circle"></i> Drive-through</span>
+                    <span style="color: var(--gold);"><i class="fas fa-check-circle"></i> Delivery</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-star"></i>
+                <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">4.3 / 5</h3>
+                <p style="color: var(--text-muted);">Based on 2,740 Reviews</p>
+                <div style="margin-top: 1rem; color: var(--gold);">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Teaser -->
+    <section id="menu" style="background: var(--secondary-bg);">
+        <h2 class="section-title reveal">Signature Offerings</h2>
+        <div class="details-grid reveal">
+            <div class="info-card">
+                <i class="fas fa-fire"></i>
+                <h3>Spicy Suya</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Premium beef cuts, perfectly spiced and grilled over open flames.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-seedling"></i>
+                <h3>Ewa Agoyin</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Extra soft mashed beans served with our signature dark, spicy palm oil sauce.</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-glass-martini-alt"></i>
+                <h3>Craft Cocktails</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Locally inspired mixology designed to perfectly pair with Nigerian spices.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;" class="reveal">
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">Average Spend: <span class="price-tag">₦10,000 – ₦40,000</span> per person</p>
+            <a href="https://danfo.me" class="btn-gold" target="_blank">View Full Menu</a>
+        </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section id="location">
+        <h2 class="section-title reveal">Visit Us</h2>
+        <div class="details-grid reveal">
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">2 Alexander Ave,<br>Ikoyi, Lagos 100001</p>
+                <p style="color: var(--gold); margin-top: 0.5rem; font-size: 0.8rem;">FC4W+J8 Lagos</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>Hours</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Opens Daily at 9:00 AM</p>
+                <p style="color: var(--gold); margin-top: 0.5rem; font-size: 0.8rem;">Presently Closed (Opens 9 AM)</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Contact</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">0812 110 0111</p>
+                <p style="color: var(--gold); margin-top: 0.5rem; font-size: 0.8rem;">Reservations & Inquiries</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2 class="logo">DANFO<span>.</span></h2>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 Danfo Bistros & Dives. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Intersection Observer for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Stop observing once revealed
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
